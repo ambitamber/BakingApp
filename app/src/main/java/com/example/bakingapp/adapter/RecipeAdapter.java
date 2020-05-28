@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,11 +35,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
     public class RecipeAdapterVieweHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView title,serviings;
+        ImageView imageView;
 
         public RecipeAdapterVieweHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.TV_title);
             serviings = itemView.findViewById(R.id.TV_servings);
+            imageView = itemView.findViewById(R.id.IV_pic);
             itemView.setOnClickListener(this);
         }
 
@@ -48,6 +51,20 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
             serviings = itemView.findViewById(R.id.TV_servings);
             title.setText(recipe.getTitle());
             serviings.setText(recipe.getServings());
+            switch (recipe.getTitle()){
+                case "Yellow Cake":
+                    imageView.setImageResource(R.drawable.yellowcake);
+                    break;
+                case "Brownies":
+                    imageView.setImageResource(R.drawable.brownies);
+                    break;
+                case "Nutella Pie":
+                    imageView.setImageResource(R.drawable.nutellapie);
+                    break;
+                case "Cheesecake":
+                    imageView.setImageResource(R.drawable.cheesecake);
+                    break;
+            }
         }
 
         @Override
