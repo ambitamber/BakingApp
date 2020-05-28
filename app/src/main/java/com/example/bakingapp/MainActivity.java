@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
 
         @Override
         protected void onPostExecute(String recipes) {
-            progressBar.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.INVISIBLE);
             if (recipes != null && !recipes.equals("")){
                 showData();
                 try {
