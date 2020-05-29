@@ -1,10 +1,14 @@
 package com.example.bakingapp;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -52,11 +56,16 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         new FetchDataTask().execute(url);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onClick(Recipe recipe) {
         String title = recipe.getTitle();
         String servings = recipe.getServings();
         Toast.makeText(MainActivity.this,title +" - "+servings,Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(this,DetailActivity.class);
+        intent.putExtra("recipe",recipe);
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
 
     private void showError(){
