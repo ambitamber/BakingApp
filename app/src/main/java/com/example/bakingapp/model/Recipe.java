@@ -6,10 +6,12 @@ public class Recipe implements Serializable {
 
     private String title;
     private String servings;
+    private String steps;
 
-    public Recipe (String title,String servings){
+    public Recipe (String title,String servings,String steps){
         this.title = title;
         this.servings = servings;
+        this.steps = steps;
     }
 
     //For title data
@@ -26,5 +28,13 @@ public class Recipe implements Serializable {
     }
     public String getServings() {
         return servings;
+    }
+
+    //For steps data
+    public void setSteps(String steps) {
+        this.steps = steps;
+    }
+    public String getSteps() {
+        return steps;
     }
 }

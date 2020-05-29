@@ -27,20 +27,20 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
         this.onClickHandler = onClickHandler;
     }
 
-
     public interface RecipeAdapterOnClickHandler {
         void onClick(Recipe recipe);
     }
 
     public class RecipeAdapterVieweHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView title,serviings;
+        TextView title,serviings,steps;
         ImageView imageView;
 
         public RecipeAdapterVieweHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.TV_title);
             serviings = itemView.findViewById(R.id.TV_servings);
+            steps = itemView.findViewById(R.id.TV_steps);
             imageView = itemView.findViewById(R.id.IV_pic);
             itemView.setOnClickListener(this);
         }
@@ -49,8 +49,10 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
             Recipe recipe = recipeList.get(index);
             title = itemView.findViewById(R.id.TV_title);
             serviings = itemView.findViewById(R.id.TV_servings);
+            steps = itemView.findViewById(R.id.TV_steps);
             title.setText(recipe.getTitle());
             serviings.setText(recipe.getServings());
+            steps.setText(recipe.getSteps());
             switch (recipe.getTitle()){
                 case "Yellow Cake":
                     imageView.setImageResource(R.drawable.yellowcake);
