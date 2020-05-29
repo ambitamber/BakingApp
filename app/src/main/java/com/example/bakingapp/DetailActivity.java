@@ -16,7 +16,7 @@ import com.example.bakingapp.model.Steps;
 import java.net.URL;
 import java.util.List;
 
-public class DetailActivity extends AppCompatActivity implements  {
+public class DetailActivity extends AppCompatActivity implements  StepAdapter.StepAdapterOnClickHandler {
 
     private ProgressBar progressBar;
     private StepAdapter stepAdapter;
@@ -39,7 +39,7 @@ public class DetailActivity extends AppCompatActivity implements  {
         }
 
         progressBar = findViewById(R.id.progress_circular_detail);
-        stepAdapter = new StepAdapter(steps,this);
+        stepAdapter = new StepAdapter(this,steps,this);
 
     }
 
@@ -48,8 +48,10 @@ public class DetailActivity extends AppCompatActivity implements  {
         Toast.makeText(this, meg, Toast.LENGTH_SHORT).show();
     }
 
+
+
     @Override
-    public void onClick(Recipe recipe) {
+    public void onClick(Steps steps) {
 
     }
 

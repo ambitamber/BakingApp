@@ -26,7 +26,7 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepAdapterVie
         this.onClickHandler = onClickHandler;
     }
 
-    private interface StepAdapterOnClickHandler {
+    public interface StepAdapterOnClickHandler {
         void onClick(Steps steps);
     }
 
