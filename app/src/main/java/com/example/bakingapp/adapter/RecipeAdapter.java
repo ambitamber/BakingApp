@@ -15,6 +15,9 @@ import com.example.bakingapp.model.Recipe;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdapterVieweHolder>{
 
     private List<Recipe> recipeList;
@@ -33,40 +36,19 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
 
     public class RecipeAdapterVieweHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView title,serviings,steps;
+        @BindView(R.id.TV_title)
+        TextView title;
+        @BindView(R.id.TV_servings)
+        TextView serviings;
+        @BindView(R.id.TV_steps)
+        TextView steps;
+        @BindView(R.id.IV_pic)
         ImageView imageView;
 
         public RecipeAdapterVieweHolder(@NonNull View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.TV_title);
-            serviings = itemView.findViewById(R.id.TV_servings);
-            steps = itemView.findViewById(R.id.TV_steps);
-            imageView = itemView.findViewById(R.id.IV_pic);
             itemView.setOnClickListener(this);
-        }
-
-        void bind(int index){
-            Recipe recipe = recipeList.get(index);
-            title = itemView.findViewById(R.id.TV_title);
-            serviings = itemView.findViewById(R.id.TV_servings);
-            steps = itemView.findViewById(R.id.TV_steps);
-            title.setText(recipe.getTitle());
-            serviings.setText(recipe.getServings());
-            steps.setText(recipe.getSteps());
-            switch (recipe.getTitle()){
-                case "Yellow Cake":
-                    imageView.setImageResource(R.drawable.yellowcake);
-                    break;
-                case "Brownies":
-                    imageView.setImageResource(R.drawable.brownies);
-                    break;
-                case "Nutella Pie":
-                    imageView.setImageResource(R.drawable.nutellapie);
-                    break;
-                case "Cheesecake":
-                    imageView.setImageResource(R.drawable.cheesecake);
-                    break;
-            }
+            ButterKnife.bind(this,itemView);
         }
 
         @Override
@@ -89,7 +71,11 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
 
     @Override
     public void onBindViewHolder(@NonNull RecipeAdapterVieweHolder holder, int position) {
-        holder.bind(position);
+       holder.title.setText(recipeList.get(position).getName());
+       holder.serviings.setText(recipeList.get(position).getServings());
+       String stepsLenght = String.valueOf(recipeList.get(position).getSteps().size());
+       holder.steps.setText(stepsLenght);
+
     }
 
     @Override
@@ -98,10 +84,5 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
             return 0;
         }
         return recipeList.size();
-    }
-
-    public void setRecipeList(List<Recipe> recipes){
-        recipeList = recipes;
-        notifyDataSetChanged();
     }
 }
