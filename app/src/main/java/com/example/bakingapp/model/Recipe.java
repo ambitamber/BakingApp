@@ -13,7 +13,7 @@ public class Recipe implements Parcelable {
     private List<Steps> steps;
     private List<Ingredients> ingredients;
 
-    protected Recipe(Parcel in) {
+    public Recipe(Parcel in) {
         id = in.readInt();
         name = in.readString();
         servings = in.readString();
@@ -30,6 +30,10 @@ public class Recipe implements Parcelable {
             return new Recipe[size];
         }
     };
+
+    public Recipe() {
+
+    }
 
     //For id data
     public int getId() {

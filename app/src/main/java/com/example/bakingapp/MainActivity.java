@@ -1,11 +1,6 @@
 package com.example.bakingapp;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,7 +10,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.bakingapp.adapter.RecipeAdapter;
+import com.example.bakingapp.fragment.DetailFragment;
 import com.example.bakingapp.model.Recipe;
 import com.example.bakingapp.utils.RecipeClient;
 import com.example.bakingapp.utils.RecipeService;
@@ -30,19 +31,16 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity implements RecipeAdapter.RecipeAdapterOnClickHandler {
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    String siteUrl = "https://d17h27t6h515a5.cloudfront.net";
     private RecipeAdapter mAdapter;
     private RecyclerView recyclerView;
     private TextView errorTV;
     private ProgressBar progressBar;
     private ArrayList<Recipe> mRecipeData;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         recyclerView = findViewById(R.id.recyclerView);
         errorTV = findViewById(R.id.TV_error);
@@ -50,21 +48,22 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
 
         RecipeService recipeService = RecipeClient.getRetrofit().create(RecipeService.class);
         Call<ArrayList<Recipe>> call = recipeService.getAllRecipes();
-        call.enqueue(new Callback<ArrayList<Recipe>>() {
-                         @Override
-                         public void onResponse(Call<ArrayList<Recipe>> call, Response<ArrayList<Recipe>> response) {
-                             mRecipeData = response.body();
-                             createList(mRecipeData);
-                             showData();
-                         }
+        call.enqueue(
+                new Callback<ArrayList<Recipe>>() {
+                    @Override
+                    public void onResponse(Call<ArrayList<Recipe>> call, Response<ArrayList<Recipe>> response) {
+                        mRecipeData = response.body();
+                        createList(mRecipeData);
+                        showData();
+                    }
 
-                         @Override
-                         public void onFailure(Call<ArrayList<Recipe>> call, Throwable t) {
-                             Toast.makeText(MainActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
-                             Log.v(TAG, t.toString());
-                             showError();
-                         }
-                     }
+                    @Override
+                    public void onFailure(Call<ArrayList<Recipe>> call, Throwable t) {
+                        Toast.makeText(MainActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                        Log.v(TAG, t.toString());
+                        showError();
+                    }
+                }
         );
 
     }
@@ -72,29 +71,27 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
     private void createList(List<Recipe> recipeList) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         recyclerView.setLayoutManager(layoutManager);
-        mAdapter = new RecipeAdapter(recipeList,this,this);
+        mAdapter = new RecipeAdapter(recipeList, this, this);
         recyclerView.setAdapter(mAdapter);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public void onClick(Recipe recipe) {
-        String title = recipe.getName();
-        String servings = recipe.getServings();
-        Toast.makeText(MainActivity.this,title +" - "+servings,Toast.LENGTH_SHORT).show();
-
-        Intent intent = new Intent(this,DetailActivity.class);
-        intent.putExtra("recipe",recipe);
-        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+    public void onClick(int index) {
+        Context context = this;
+        DetailActivity.recipe = mRecipeData.get(index);
+        DetailFragment.recipe = mRecipeData.get(index);
+        Intent intent = new Intent(context, DetailActivity.class);
+        startActivity(intent);
     }
 
-    private void showError(){
+    private void showError() {
         progressBar.setVisibility(View.INVISIBLE);
         errorTV.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.INVISIBLE);
     }
 
-    private void showData(){
+    private void showData() {
         errorTV.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.INVISIBLE);
         recyclerView.setVisibility(View.VISIBLE);

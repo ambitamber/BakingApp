@@ -4,28 +4,11 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Steps {
-    @SerializedName("mId")
-    @Expose
     private int id;
-    @SerializedName("mShortDescription")
-    @Expose
     private String shortDescription;
-    @SerializedName("mDescription")
-    @Expose
     private String description;
-    @SerializedName("mVideoURL")
-    @Expose
     private String videoURL;
-    @SerializedName("mThumbnailURL")
-    @Expose
     private String thumbnailURL;
-
-    public Steps (String shortDescription,String description, String videoURL, String thumbnailURL){
-        this.shortDescription = shortDescription;
-        this.description = description;
-        this.thumbnailURL = thumbnailURL;
-        this.videoURL = videoURL;
-    }
 
     //For id data
     public void setId(int id) {

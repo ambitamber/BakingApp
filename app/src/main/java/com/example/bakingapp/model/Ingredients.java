@@ -5,21 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Ingredients {
 
-    @SerializedName("mQuantity")
-    @Expose
     private String quantity;
-    @SerializedName("mMeasure")
-    @Expose
     private String measure;
-    @SerializedName("mIngredient")
-    @Expose
     private String ingredient;
-
-    public Ingredients(String quantity,String measure,String ingredient){
-        this.quantity = quantity;
-        this.measure = measure;
-        this.ingredient = ingredient;
-    }
 
     //For quantity data
     public String getQuantity() {

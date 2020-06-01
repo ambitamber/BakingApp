@@ -14,46 +14,42 @@ import com.example.bakingapp.model.Steps;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepAdapterViewHolder>{
 
-    private final Context context;
     private final List<Steps> stepsList;
     private final StepAdapterOnClickHandler onClickHandler;
 
-    public StepAdapter(Context context, List<Steps> stepsList, StepAdapterOnClickHandler onClickHandler) {
-        this.context = context;
+    public StepAdapter(List<Steps> stepsList, StepAdapterOnClickHandler onClickHandler) {
         this.stepsList = stepsList;
         this.onClickHandler = onClickHandler;
     }
 
     public interface StepAdapterOnClickHandler {
-        void onClick(Steps steps);
+        void onClick(int index);
     }
 
     public class StepAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView shortDescription,description;
+        @BindView(R.id.TV_step_id)
+        TextView id;
+        @BindView(R.id.TV_shortDescription)
+        TextView shortDescription;
+        @BindView(R.id.TV_description)
+        TextView description;
 
         public StepAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
-            shortDescription = itemView.findViewById(R.id.TV_shortDescription);
-            description = itemView.findViewById(R.id.TV_description);
             itemView.setOnClickListener(this);
-        }
-
-        void bind(int index){
-            Steps steps = stepsList.get(index);
-            shortDescription = itemView.findViewById(R.id.TV_shortDescription);
-            description = itemView.findViewById(R.id.TV_description);
-            shortDescription.setText(steps.getShortDescription());
-            description.setText(steps.getDescription());
+            ButterKnife.bind(this,itemView);
         }
 
         @Override
         public void onClick(View v) {
             int adapterposition = getAdapterPosition();
-            Steps steps = stepsList.get(adapterposition);
-            onClickHandler.onClick(steps);
+            onClickHandler.onClick(adapterposition);
         }
     }
 
@@ -69,7 +65,9 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepAdapterVie
 
     @Override
     public void onBindViewHolder(@NonNull StepAdapterViewHolder holder, int position) {
-        holder.bind(position);
+        holder.id.setText(stepsList.get(position).getId());
+        holder.shortDescription.setText(stepsList.get(position).getShortDescription());
+        holder.description.setText(stepsList.get(position).getDescription());
     }
 
     @Override

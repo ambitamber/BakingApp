@@ -31,7 +31,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
     }
 
     public interface RecipeAdapterOnClickHandler {
-        void onClick(Recipe recipe);
+        void onClick(int index);
     }
 
     public class RecipeAdapterVieweHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -54,8 +54,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
         @Override
         public void onClick(View v) {
             int adapterposition = getAdapterPosition();
-            Recipe recipe = recipeList.get(adapterposition);
-            onClickHandler.onClick(recipe);
+            onClickHandler.onClick(adapterposition);
         }
     }
 
