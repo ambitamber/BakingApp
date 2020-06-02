@@ -31,8 +31,6 @@ public class DetailActivity extends AppCompatActivity implements StepAdapter.Ste
     private IngredientAdapter ingredientAdapter;
     private StepAdapter stepAdapter;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
