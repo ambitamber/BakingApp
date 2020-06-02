@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bakingapp.adapter.RecipeAdapter;
+import com.example.bakingapp.fragment.IngredientFragment;
 import com.example.bakingapp.model.Recipe;
 import com.example.bakingapp.utils.RecipeClient;
 import com.example.bakingapp.utils.RecipeService;
@@ -78,8 +79,10 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
     @Override
     public void onClick(int index) {
         Context context = this;
-        DetailActivity.recipe = mRecipeData.get(index);
-        Intent intent = new Intent(context, DetailActivity.class);
+        Recipe recipelist = mRecipeData.get(index);
+        Main_Detail.recipe = recipelist;
+        IngredientFragment.recipe =recipelist;
+        Intent intent = new Intent(context, Main_Detail.class);
         startActivity(intent);
     }
 

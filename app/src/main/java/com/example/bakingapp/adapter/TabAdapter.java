@@ -39,7 +39,7 @@ public class TabAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         String title = null;
         if (position == 0) {
-            title = "Ingredient";
+            title = "Ingredients";
         } else if (position == 1) {
             title = "Recipe Steps";
         }
