@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bakingapp.adapter.RecipeAdapter;
 import com.example.bakingapp.fragment.IngredientFragment;
+import com.example.bakingapp.fragment.StepsFragment;
 import com.example.bakingapp.model.Recipe;
 import com.example.bakingapp.utils.RecipeClient;
 import com.example.bakingapp.utils.RecipeService;
@@ -82,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         Recipe recipelist = mRecipeData.get(index);
         Main_Detail.recipe = recipelist;
         IngredientFragment.recipe =recipelist;
+        StepsFragment.recipe = recipelist;
         Intent intent = new Intent(context, Main_Detail.class);
         startActivity(intent);
     }
