@@ -39,6 +39,7 @@ public class Recipe implements Parcelable {
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -47,6 +48,7 @@ public class Recipe implements Parcelable {
     public void setName(String name) {
         this.name = name;
     }
+
     public String getName() {
         return name;
     }
@@ -55,6 +57,7 @@ public class Recipe implements Parcelable {
     public void setServings(String servings) {
         this.servings = servings;
     }
+
     public String getServings() {
         return servings;
     }
@@ -64,6 +67,7 @@ public class Recipe implements Parcelable {
     public List<Steps> getSteps() {
         return steps;
     }
+
     public void setSteps(List<Steps> steps) {
         this.steps = steps;
     }
@@ -72,6 +76,7 @@ public class Recipe implements Parcelable {
     public List<Ingredients> getIngredients() {
         return ingredients;
     }
+
     public void setIngredients(List<Ingredients> ingredients) {
         this.ingredients = ingredients;
     }

@@ -18,7 +18,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdapterVieweHolder>{
+public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdapterVieweHolder> {
 
     private List<Recipe> recipeList;
     private final Context context;
@@ -48,7 +48,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
         public RecipeAdapterVieweHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
 
         @Override
@@ -64,22 +64,22 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
         Context context = parent.getContext();
         int layoutForItem = R.layout.list;
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(layoutForItem,parent,false);
+        View view = layoutInflater.inflate(layoutForItem, parent, false);
         return new RecipeAdapterVieweHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecipeAdapterVieweHolder holder, int position) {
-       holder.title.setText(recipeList.get(position).getName());
-       holder.serviings.setText(recipeList.get(position).getServings());
-       String stepsLenght = String.valueOf(recipeList.get(position).getSteps().size());
-       holder.steps.setText(stepsLenght);
+        holder.title.setText(recipeList.get(position).getName());
+        holder.serviings.setText(recipeList.get(position).getServings());
+        String stepsLenght = String.valueOf(recipeList.get(position).getSteps().size());
+        holder.steps.setText(stepsLenght);
 
     }
 
     @Override
     public int getItemCount() {
-        if (recipeList == null){
+        if (recipeList == null) {
             return 0;
         }
         return recipeList.size();

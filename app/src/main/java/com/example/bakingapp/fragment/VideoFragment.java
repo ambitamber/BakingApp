@@ -42,8 +42,6 @@ public class VideoFragment extends Fragment {
     PlayerView playerView;
     @BindView(R.id.step_detail_description)
     TextView descriptionView;
-    @BindView(R.id.placeholder_image_view)
-    ImageView placeholderView;
 
     @Nullable
     @Override
@@ -110,11 +108,9 @@ public class VideoFragment extends Fragment {
         player = ExoPlayerFactory.newSimpleInstance(getContext());
         playerView.setPlayer(player);
         if (videoURL != null) {
-            placeholderView.setVisibility(View.GONE);
             uri = Uri.parse(videoURL);
         }
         if (videoURL.equals("")) {
-            placeholderView.setVisibility(View.VISIBLE);
             playerView.setVisibility(View.GONE);
         }
         MediaSource mediaSource = buildMediaSource(uri);

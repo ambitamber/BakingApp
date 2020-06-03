@@ -27,6 +27,30 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
         this.onClickHandler = onClickHandler;
     }
 
+    @NonNull
+    @Override
+    public IngredientAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Context context = parent.getContext();
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        View view = layoutInflater.inflate(R.layout.list_ingredient,parent,false);
+        return new IngredientAdapterViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull IngredientAdapterViewHolder holder, int position) {
+        holder.quantity.setText(ingredientsList.get(position).getQuantity());
+        holder.measure.setText(ingredientsList.get(position).getMeasure());
+        holder.ingredient.setText(ingredientsList.get(position).getIngredient());
+    }
+
+    @Override
+    public int getItemCount() {
+       if (ingredientsList == null){
+           return 0;
+       }
+       return ingredientsList.size();
+    }
+
     public interface IngredientAdapterOnClickHandler{
         void onClick(int index);
     }
@@ -50,30 +74,6 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
             int adapterposition = getAdapterPosition();
             onClickHandler.onClick(adapterposition);
         }
-    }
-
-    @NonNull
-    @Override
-    public IngredientAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.list_ingredient,parent,false);
-        return new IngredientAdapterViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull IngredientAdapterViewHolder holder, int position) {
-        holder.quantity.setText(ingredientsList.get(position).getQuantity());
-        holder.measure.setText(ingredientsList.get(position).getMeasure());
-        holder.ingredient.setText(ingredientsList.get(position).getIngredient());
-    }
-
-    @Override
-    public int getItemCount() {
-       if (ingredientsList == null){
-           return 0;
-       }
-       return ingredientsList.size();
     }
 
 }

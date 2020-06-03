@@ -35,6 +35,7 @@ public class TabAdapter extends FragmentPagerAdapter {
         //Shows two pages in the layout
         return 2;
     }
+
     @Override
     public CharSequence getPageTitle(int position) {
         String title = null;

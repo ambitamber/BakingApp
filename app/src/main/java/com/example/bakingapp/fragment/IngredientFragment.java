@@ -27,10 +27,10 @@ import butterknife.ButterKnife;
 public class IngredientFragment extends Fragment implements IngredientAdapter.IngredientAdapterOnClickHandler {
 
     public static Recipe recipe;
-    private List<Ingredients> ingredientsList;
     @BindView(R.id.fragment_ingredient_rv)
     RecyclerView recyclerView;
     IngredientAdapter ingredientAdapter;
+    private List<Ingredients> ingredientsList;
 
     public IngredientFragment() {
 

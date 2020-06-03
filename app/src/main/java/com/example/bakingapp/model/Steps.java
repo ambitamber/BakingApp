@@ -10,12 +10,13 @@ public class Steps {
     private String videoURL;
     private String thumbnailURL;
 
+    public int getId() {
+        return id;
+    }
+
     //For id data
     public void setId(int id) {
         this.id = id;
-    }
-    public int getId() {
-        return id;
     }
 
     //For getShortDescription data

@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         Context context = this;
         Recipe recipelist = mRecipeData.get(index);
         Main_Detail.recipe = recipelist;
-        IngredientFragment.recipe =recipelist;
+        IngredientFragment.recipe = recipelist;
         StepsFragment.recipe = recipelist;
         Intent intent = new Intent(context, Main_Detail.class);
         startActivity(intent);
