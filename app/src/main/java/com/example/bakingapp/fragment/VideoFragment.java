@@ -38,16 +38,19 @@ public class VideoFragment extends Fragment {
     private int currentWindow = 0;
     private long playbackPosition = 0;
 
-    @BindView(R.id.exo_Player)
+    @BindView(R.id.exo_player_view)
     PlayerView playerView;
     @BindView(R.id.step_detail_description)
     TextView descriptionView;
 
+    public VideoFragment(){
+
+    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.video_player, container,false);
+        View view = inflater.inflate(R.layout.activity_main__detail, container,false);
         ButterKnife.bind(this,view);
 
         if (steps != null){

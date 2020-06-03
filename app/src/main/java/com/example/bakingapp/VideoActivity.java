@@ -27,6 +27,7 @@ public class VideoActivity extends AppCompatActivity {
     private String shortDescription;
     private String videoURL;
     private String mDescription;
+    private String thumbnailURL;
     private Uri uri;
 
     private SimpleExoPlayer player;
@@ -49,10 +50,12 @@ public class VideoActivity extends AppCompatActivity {
         videoURL = steps.getVideoURL();
         mDescription = steps.getDescription();
         shortDescription = steps.getShortDescription();
+        thumbnailURL = steps.getThumbnailURL();
 
         ButterKnife.bind(this);
         descriptionView.setText(mDescription);
         short_descriptionview.setText(shortDescription);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -102,8 +105,9 @@ public class VideoActivity extends AppCompatActivity {
         playerView.setPlayer(player);
         if (videoURL != null) {
             uri = Uri.parse(videoURL);
-        } else if (videoURL.equals("")) {
-            playerView.setVisibility(View.GONE);
+            playerView.setVisibility(View.VISIBLE);
+        }  else if (videoURL.equals("") &&thumbnailURL.equals("")){
+            playerView.setVisibility(View.INVISIBLE);
         }
         MediaSource mediaSource = buildMediaSource(uri);
         player.setPlayWhenReady(playWhenReady);

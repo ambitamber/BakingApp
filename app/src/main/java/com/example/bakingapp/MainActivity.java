@@ -4,18 +4,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
+import android.widget.GridLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bakingapp.adapter.RecipeAdapter;
+import com.example.bakingapp.fragment.DetailFragment;
 import com.example.bakingapp.fragment.IngredientFragment;
 import com.example.bakingapp.fragment.StepsFragment;
 import com.example.bakingapp.model.Recipe;
@@ -70,8 +75,8 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
     }
 
     private void createList(List<Recipe> recipeList) {
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
-        recyclerView.setLayoutManager(layoutManager);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,screenSize());
+        recyclerView.setLayoutManager(gridLayoutManager);
         mAdapter = new RecipeAdapter(recipeList, this, this);
         recyclerView.setAdapter(mAdapter);
     }
@@ -84,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         Main_Detail.recipe = recipelist;
         IngredientFragment.recipe = recipelist;
         StepsFragment.recipe = recipelist;
+        DetailFragment.recipe = recipelist;
         Intent intent = new Intent(context, Main_Detail.class);
         startActivity(intent);
     }
@@ -100,5 +106,16 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         recyclerView.setVisibility(View.VISIBLE);
     }
 
+    private int screenSize() {
+        Display display = this.getWindowManager().getDefaultDisplay();
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        display.getMetrics(outMetrics);
+
+        float density  = getResources().getDisplayMetrics().density;
+        float dpWidth  = outMetrics.widthPixels / density;
+        int size = Math.round(dpWidth/450);
+        Log.e("MainActivity", "Screen Size: "+ size);
+        return size;
+    }
 
 }
