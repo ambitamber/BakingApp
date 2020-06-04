@@ -58,9 +58,6 @@ public class Main_Detail extends AppCompatActivity {
             fragmentManager.beginTransaction()
                     .add(R.id.container, new DetailFragment())
                     .commit();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.detailContainer, new VideoFragment())
-                    .commit();
         }else{
             ButterKnife.bind(this);
             tabAdapter = new TabAdapter(getSupportFragmentManager());

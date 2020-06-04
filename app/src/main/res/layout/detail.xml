@@ -1,0 +1,45 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ingredients"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@android:color/white"
+        android:padding="4dp"
+        android:textSize="25dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginBottom="2dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/detail_ingredient_Fragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingLeft="8dp"
+        android:paddingBottom="16dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Steps"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@android:color/white"
+        android:padding="4dp"
+        android:textSize="25dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginBottom="2dp"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/detail_step_Fragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingLeft="8dp"
+        android:paddingTop="10dp" />
+
+</LinearLayout>

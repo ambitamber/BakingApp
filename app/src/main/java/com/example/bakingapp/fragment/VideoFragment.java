@@ -31,6 +31,7 @@ public class VideoFragment extends Fragment {
     private String shortDescription;
     private String videoURL;
     private String mDescription;
+    private String thumbnailURL;
     private Uri uri;
 
     private SimpleExoPlayer player;
@@ -38,10 +39,12 @@ public class VideoFragment extends Fragment {
     private int currentWindow = 0;
     private long playbackPosition = 0;
 
-    @BindView(R.id.exo_player_view)
+    @BindView(R.id.exo_Player)
     PlayerView playerView;
     @BindView(R.id.step_detail_description)
     TextView descriptionView;
+    @BindView(R.id.step_short_description)
+    TextView shortDescriptionView;
 
     public VideoFragment(){
 
@@ -50,19 +53,21 @@ public class VideoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.activity_main__detail, container,false);
+        View view = inflater.inflate(R.layout.video_player, container,false);
         ButterKnife.bind(this,view);
 
         if (steps != null){
             videoURL = steps.getVideoURL();
             mDescription = steps.getDescription();
             shortDescription = steps.getShortDescription();
+            thumbnailURL = steps.getThumbnailURL();
         }else {
             videoURL = "";
         }
+        descriptionView.setText(mDescription);
+        shortDescriptionView.setText(shortDescription);
 
         return view;
-
     }
 
     @Override
@@ -112,9 +117,9 @@ public class VideoFragment extends Fragment {
         playerView.setPlayer(player);
         if (videoURL != null) {
             uri = Uri.parse(videoURL);
-        }
-        if (videoURL.equals("")) {
-            playerView.setVisibility(View.GONE);
+            playerView.setVisibility(View.VISIBLE);
+        }  else if (videoURL.equals("") &&thumbnailURL.equals("")){
+            playerView.setVisibility(View.INVISIBLE);
         }
         MediaSource mediaSource = buildMediaSource(uri);
         player.setPlayWhenReady(playWhenReady);

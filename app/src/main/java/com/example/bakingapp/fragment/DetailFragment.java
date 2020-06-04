@@ -27,7 +27,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DetailFragment extends Fragment implements StepAdapter.StepAdapterOnClickHandler{
+public class DetailFragment extends Fragment implements StepAdapter.StepAdapterOnClickHandler,IngredientAdapter.IngredientAdapterOnClickHandler{
 
     StepAdapter stepAdapter;
     IngredientAdapter ingredientAdapter;
@@ -54,7 +54,7 @@ public class DetailFragment extends Fragment implements StepAdapter.StepAdapterO
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_main__detail,container,false);
+        View view = inflater.inflate(R.layout.detail,container,false);
         ButterKnife.bind(this,view);
 
         stepList = recipe.getSteps();
@@ -62,15 +62,19 @@ public class DetailFragment extends Fragment implements StepAdapter.StepAdapterO
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(stepAdapter);
 
-        return super.onCreateView(inflater, container, savedInstanceState);
+        ingredientList = recipe.getIngredients();
+        ingredientAdapter = new IngredientAdapter(ingredientList,this);
+        ingredientRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        ingredientRecyclerView.setAdapter(ingredientAdapter);
+
+        return view;
     }
 
     @Override
     public void onClick(int index) {
-        if (Main_Detail.isTwoPane){
             VideoFragment.steps = stepList.get(index);
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.detailContainer,new VideoFragment()).commit();
-        }
+
     }
 }
