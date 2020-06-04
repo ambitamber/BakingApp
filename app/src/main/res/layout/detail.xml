@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+
+    android:layout_margin="2dp">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,8 +14,6 @@
         android:textColor="@android:color/white"
         android:padding="4dp"
         android:textSize="25dp"
-        android:layout_marginRight="3dp"
-        android:layout_marginLeft="3dp"
         android:layout_marginBottom="2dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -21,8 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:paddingLeft="8dp"
-        android:paddingBottom="16dp" />
+        android:paddingBottom="8dp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,15 +30,11 @@
         android:textColor="@android:color/white"
         android:padding="4dp"
         android:textSize="25dp"
-        android:layout_marginRight="3dp"
-        android:layout_marginLeft="3dp"
         android:layout_marginBottom="2dp"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/detail_step_Fragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingLeft="8dp"
-        android:paddingTop="10dp" />
+        android:layout_weight="1"/>
 
 </LinearLayout>

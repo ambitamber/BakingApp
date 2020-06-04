@@ -13,7 +13,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bakingapp.Main_Detail;
 import com.example.bakingapp.R;
 import com.example.bakingapp.adapter.IngredientAdapter;
 import com.example.bakingapp.adapter.StepAdapter;
@@ -34,7 +33,7 @@ public class DetailFragment extends Fragment implements StepAdapter.StepAdapterO
 
     public static Recipe recipe;
 
-    private List<Steps> stepList = new ArrayList<>();
+    public static List<Steps> stepList = new ArrayList<>();
     private List<Ingredients> ingredientList = new ArrayList<>();
 
     @BindView(R.id.detail_step_Fragment)

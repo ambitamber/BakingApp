@@ -3,6 +3,8 @@ package com.example.bakingapp.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 
 public class Recipe implements Parcelable {
@@ -30,10 +32,6 @@ public class Recipe implements Parcelable {
             return new Recipe[size];
         }
     };
-
-    public Recipe() {
-
-    }
 
     //For id data
     public int getId() {
@@ -91,5 +89,10 @@ public class Recipe implements Parcelable {
         dest.writeInt(id);
         dest.writeString(name);
         dest.writeString(servings);
+    }
+
+    public static Recipe fromJson(String serializedRecipe) {
+        Gson gson = new Gson();
+        return gson.fromJson(serializedRecipe, Recipe.class);
     }
 }

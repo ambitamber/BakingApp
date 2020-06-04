@@ -1,35 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:background="@color/lightred"
-    android:layout_gravity="center_horizontal"
-    android:padding="8dp">
+
+    android:id="@+id/widget_layout"
+
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+
+    android:background="#f9f9f9"
+
+    tools:ignore="Overdraw">
+
+
 
     <TextView
-        android:id="@+id/appwidget_title"
-        android:layout_width="wrap_content"
+
+        android:id="@+id/widget_text_view_recipe_name"
+
+        android:layout_width="match_parent"
+
         android:layout_height="wrap_content"
-        android:background="@color/lightred"
-        android:layout_margin="12dp"
-        android:contentDescription="EXAMPLE"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
+
+        android:background="@color/colorPrimary"
+
+        android:padding="8dp"
+
+        android:text="@string/app_name"
+
+        android:fontFamily="cursive"
+
         android:textStyle="bold"
-        tools:text="RECIPE TITLE"/>
 
-    <TextView
-        android:id="@+id/appwidget_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="@color/lightred"
-        android:contentDescription="EXAMPLE"
-        android:textColor="#ffffff"
-        android:textSize="18sp"
-        android:textStyle="bold|italic"
-        tools:text="INGREDIENT INGREDIENT INGREDIENT INGREDIENT INGREDIENT INGREDIENT"/>
+        android:textSize="25sp"
 
-</LinearLayout>
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+
+        android:textColor="@android:color/black" />
+
+
+
+    <ListView
+
+        android:id="@+id/widget_list_view"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
+
+        android:layout_below="@id/widget_text_view_recipe_name"
+
+        android:layout_margin="0dp" />
+
+
+
+    <RelativeLayout
+
+        android:id="@+id/widget_empty_view"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
+
+        android:orientation="vertical"
+
+        android:visibility="gone">
+
+
+
+        <TextView
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:layout_centerInParent="true"
+
+            android:text="Recipe cannot be displayed."
+
+            android:textAlignment="center"
+
+            android:textColor="#5c5c5c"
+
+            android:textSize="20sp"
+            android:gravity="center_horizontal" />
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

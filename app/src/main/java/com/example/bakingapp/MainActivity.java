@@ -8,7 +8,6 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
-import android.widget.GridLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,7 +15,6 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bakingapp.adapter.RecipeAdapter;
@@ -85,11 +83,11 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
     @Override
     public void onClick(int index) {
         Context context = this;
-        Recipe recipelist = mRecipeData.get(index);
-        Main_Detail.recipe = recipelist;
-        IngredientFragment.recipe = recipelist;
-        StepsFragment.recipe = recipelist;
-        DetailFragment.recipe = recipelist;
+        Recipe recipeItem = mRecipeData.get(index);
+        Main_Detail.recipe = recipeItem;
+        IngredientFragment.recipe = recipeItem;
+        StepsFragment.recipe = recipeItem;
+        DetailFragment.recipe = recipeItem;
         Intent intent = new Intent(context, Main_Detail.class);
         startActivity(intent);
     }

@@ -1,26 +1,25 @@
 package com.example.bakingapp;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
-import android.os.Bundle;
-
+import com.example.bakingapp.adapter.StepAdapter;
 import com.example.bakingapp.adapter.TabAdapter;
 import com.example.bakingapp.fragment.DetailFragment;
 import com.example.bakingapp.fragment.VideoFragment;
-import com.example.bakingapp.model.Ingredients;
 import com.example.bakingapp.model.Recipe;
 import com.example.bakingapp.model.Steps;
 import com.google.android.material.tabs.TabLayout;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class Main_Detail extends AppCompatActivity {
+public class Main_Detail extends AppCompatActivity  {
 
     @BindView(R.id.viewpager)
     ViewPager viewPager;
@@ -28,8 +27,6 @@ public class Main_Detail extends AppCompatActivity {
     TabLayout tabLayout;
     TabAdapter tabAdapter;
     public static Recipe recipe;
-    private List<Steps> stepsList;
-    private List<Ingredients> ingredientsList;
 
     public static boolean isTwoPane;
     private FragmentManager fragmentManager;
@@ -39,25 +36,24 @@ public class Main_Detail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main__detail);
 
-
         setTitle(recipe.getName());
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        stepsList = new ArrayList<>();
-        stepsList = recipe.getSteps();
-        ingredientsList = new ArrayList<>();
-        ingredientsList = recipe.getIngredients();
+
 
         if (findViewById(R.id.detailContainer) != null){
             isTwoPane = true;
         }else {
             isTwoPane = false;
         }
+
         if (isTwoPane){
-            fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction()
-                    .add(R.id.container, new DetailFragment())
-                    .commit();
+            if (savedInstanceState == null){
+                fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .add(R.id.container, new DetailFragment())
+                        .commit();
+            }
         }else{
             ButterKnife.bind(this);
             tabAdapter = new TabAdapter(getSupportFragmentManager());

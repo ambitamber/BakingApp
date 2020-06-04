@@ -6,12 +6,13 @@
     android:layout_marginBottom="11dp"
     android:layout_marginLeft="3dp"
     android:layout_marginRight="3dp"
+
     app:cardCornerRadius="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="#E6E3E3"
+        android:background="@drawable/main_touch_selector"
         android:orientation="horizontal"
         android:padding="10dp">
 
@@ -23,8 +24,8 @@
 
             <ImageView
                 android:id="@+id/IV_pic"
-                android:layout_width="150dp"
-                android:layout_height="120dp"
+                android:layout_width="190dp"
+                android:layout_height="140dp"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
                 android:src="@drawable/yellowcake" />

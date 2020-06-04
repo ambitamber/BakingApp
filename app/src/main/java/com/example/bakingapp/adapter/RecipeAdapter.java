@@ -74,6 +74,20 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
         holder.serviings.setText(recipeList.get(position).getServings());
         String stepsLenght = String.valueOf(recipeList.get(position).getSteps().size());
         holder.steps.setText(stepsLenght);
+        switch (recipeList.get(position).getName()){
+            case "Nutella Pie":
+                holder.imageView.setImageResource(R.drawable.nutellapie);
+                break;
+            case "Brownies":
+                holder.imageView.setImageResource(R.drawable.brownies);
+                break;
+            case "Yellow Cake":
+                holder.imageView.setImageResource(R.drawable.yellowcake);
+                break;
+            case "Cheesecake":
+                holder.imageView.setImageResource(R.drawable.cheesecake);
+                break;
+        }
 
     }
 
