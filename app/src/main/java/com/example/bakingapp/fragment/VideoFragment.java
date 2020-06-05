@@ -22,6 +22,9 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -55,7 +58,7 @@ public class VideoFragment extends Fragment {
         View view = inflater.inflate(R.layout.video_player, container,false);
         ButterKnife.bind(this,view);
 
-        if (steps != null){
+        if (steps != null ){
             videoURL = steps.getVideoURL();
             mDescription = steps.getDescription();
             shortDescription = steps.getShortDescription();

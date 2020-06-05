@@ -1,17 +1,19 @@
 package com.example.bakingapp;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.bakingapp.adapter.StepAdapter;
 import com.example.bakingapp.adapter.TabAdapter;
 import com.example.bakingapp.fragment.DetailFragment;
 import com.example.bakingapp.fragment.VideoFragment;
 import com.example.bakingapp.model.Recipe;
-import com.example.bakingapp.model.Steps;
+import com.example.bakingapp.widget.Widget;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.Objects;
@@ -27,6 +29,8 @@ public class Main_Detail extends AppCompatActivity  {
     TabLayout tabLayout;
     TabAdapter tabAdapter;
     public static Recipe recipe;
+
+    public static final String ARG_RECIPE = "recipe_key";
 
     public static boolean isTwoPane;
     private FragmentManager fragmentManager;
@@ -53,6 +57,9 @@ public class Main_Detail extends AppCompatActivity  {
                 fragmentManager.beginTransaction()
                         .add(R.id.container, new DetailFragment())
                         .commit();
+                fragmentManager.beginTransaction()
+                        .add(R.id.detailContainer,new VideoFragment())
+                        .commit();
             }
         }else{
             ButterKnife.bind(this);
@@ -60,5 +67,16 @@ public class Main_Detail extends AppCompatActivity  {
             viewPager.setAdapter(tabAdapter);
             tabLayout.setupWithViewPager(viewPager);
         }
+        updateBakingWidget(recipe,this);
+    }
+
+    private void updateBakingWidget(Recipe recipe, Context context) {
+
+        AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
+
+        int[] appWidgetIds = widgetManager.getAppWidgetIds(new ComponentName(this, Widget.class));
+
+        Widget.updateBakingWidgets(context, widgetManager, appWidgetIds, recipe);
+
     }
 }

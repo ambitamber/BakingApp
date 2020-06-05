@@ -3,7 +3,9 @@ package com.example.bakingapp.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Ingredients {
+import java.io.Serializable;
+
+public class Ingredients implements Serializable {
 
     private String quantity;
     private String measure;

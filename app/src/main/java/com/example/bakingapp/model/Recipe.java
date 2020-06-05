@@ -2,9 +2,11 @@ package com.example.bakingapp.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Recipe implements Parcelable {
@@ -91,8 +93,12 @@ public class Recipe implements Parcelable {
         dest.writeString(servings);
     }
 
-    public static Recipe fromJson(String serializedRecipe) {
-        Gson gson = new Gson();
-        return gson.fromJson(serializedRecipe, Recipe.class);
+    public String getIngredientsText(){
+        List<String> result = new ArrayList<>();
+        for (Ingredients ingredient : ingredients) {
+            result.add(ingredient.getIngredient());
+        }
+        return TextUtils.join(",\n", result);
+
     }
 }

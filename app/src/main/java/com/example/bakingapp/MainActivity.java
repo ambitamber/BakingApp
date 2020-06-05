@@ -1,5 +1,7 @@
 package com.example.bakingapp;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -21,9 +23,11 @@ import com.example.bakingapp.adapter.RecipeAdapter;
 import com.example.bakingapp.fragment.DetailFragment;
 import com.example.bakingapp.fragment.IngredientFragment;
 import com.example.bakingapp.fragment.StepsFragment;
+import com.example.bakingapp.fragment.VideoFragment;
 import com.example.bakingapp.model.Recipe;
 import com.example.bakingapp.utils.RecipeClient;
 import com.example.bakingapp.utils.RecipeService;
+import com.example.bakingapp.widget.Widget;
 
 import java.util.ArrayList;
 import java.util.List;

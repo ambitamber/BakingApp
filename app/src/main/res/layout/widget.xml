@@ -1,94 +1,29 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    xmlns:tools="http://schemas.android.com/tools"
-
-    android:id="@+id/widget_layout"
-
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-
     android:layout_height="match_parent"
-
-    android:background="#f9f9f9"
-
-    tools:ignore="Overdraw">
-
-
+    android:id="@+id/widget_layout"
+    android:background="#09C"
+    android:orientation="vertical"
+    android:padding="8dp">
 
     <TextView
-
-        android:id="@+id/widget_text_view_recipe_name"
-
-        android:layout_width="match_parent"
-
+        android:id="@+id/widget_Title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="8dp"
+        android:contentDescription="Select recipe in BakingApp"
+        android:text="Select recipe in BakingApp"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
-        android:background="@color/colorPrimary"
-
+    <TextView
+        android:id="@+id/widget_Steps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:padding="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
-        android:text="@string/app_name"
-
-        android:fontFamily="cursive"
-
-        android:textStyle="bold"
-
-        android:textSize="25sp"
-
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-
-        android:textColor="@android:color/black" />
-
-
-
-    <ListView
-
-        android:id="@+id/widget_list_view"
-
-        android:layout_width="match_parent"
-
-        android:layout_height="match_parent"
-
-        android:layout_below="@id/widget_text_view_recipe_name"
-
-        android:layout_margin="0dp" />
-
-
-
-    <RelativeLayout
-
-        android:id="@+id/widget_empty_view"
-
-        android:layout_width="match_parent"
-
-        android:layout_height="match_parent"
-
-        android:orientation="vertical"
-
-        android:visibility="gone">
-
-
-
-        <TextView
-
-            android:layout_width="wrap_content"
-
-            android:layout_height="wrap_content"
-
-            android:layout_centerInParent="true"
-
-            android:text="Recipe cannot be displayed."
-
-            android:textAlignment="center"
-
-            android:textColor="#5c5c5c"
-
-            android:textSize="20sp"
-            android:gravity="center_horizontal" />
-
-
-
-    </RelativeLayout>
-
-</RelativeLayout>
+</LinearLayout>
