@@ -21,12 +21,10 @@ import butterknife.ButterKnife;
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdapterVieweHolder> {
 
     private List<Recipe> recipeList;
-    private final Context context;
     private final RecipeAdapterOnClickHandler onClickHandler;
 
-    public RecipeAdapter(List<Recipe> recipeList, Context context, RecipeAdapterOnClickHandler onClickHandler) {
+    public RecipeAdapter(List<Recipe> recipeList, RecipeAdapterOnClickHandler onClickHandler) {
         this.recipeList = recipeList;
-        this.context = context;
         this.onClickHandler = onClickHandler;
     }
 
@@ -88,7 +86,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
                 holder.imageView.setImageResource(R.drawable.cheesecake);
                 break;
         }
-
     }
 
     @Override

@@ -32,7 +32,6 @@ public class DetailFragment extends Fragment implements StepAdapter.StepAdapterO
     IngredientAdapter ingredientAdapter;
 
     public static Recipe recipe;
-
     public static List<Steps> stepList = new ArrayList<>();
     private List<Ingredients> ingredientList = new ArrayList<>();
 
@@ -42,7 +41,6 @@ public class DetailFragment extends Fragment implements StepAdapter.StepAdapterO
     RecyclerView ingredientRecyclerView;
 
     public DetailFragment(){
-
     }
 
     @Override
@@ -74,6 +72,5 @@ public class DetailFragment extends Fragment implements StepAdapter.StepAdapterO
             VideoFragment.steps = stepList.get(index);
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.detailContainer,new VideoFragment()).commit();
-
     }
 }

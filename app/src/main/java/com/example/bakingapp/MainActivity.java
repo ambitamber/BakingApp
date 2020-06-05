@@ -1,7 +1,5 @@
 package com.example.bakingapp;
 
-import android.appwidget.AppWidgetManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -23,11 +21,9 @@ import com.example.bakingapp.adapter.RecipeAdapter;
 import com.example.bakingapp.fragment.DetailFragment;
 import com.example.bakingapp.fragment.IngredientFragment;
 import com.example.bakingapp.fragment.StepsFragment;
-import com.example.bakingapp.fragment.VideoFragment;
 import com.example.bakingapp.model.Recipe;
 import com.example.bakingapp.utils.RecipeClient;
 import com.example.bakingapp.utils.RecipeService;
-import com.example.bakingapp.widget.Widget;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
     private void createList(List<Recipe> recipeList) {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,screenSize());
         recyclerView.setLayoutManager(gridLayoutManager);
-        mAdapter = new RecipeAdapter(recipeList, this, this);
+        mAdapter = new RecipeAdapter(recipeList, this);
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -119,5 +115,4 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         Log.e("MainActivity", "Screen Size: "+ size);
         return size;
     }
-
 }

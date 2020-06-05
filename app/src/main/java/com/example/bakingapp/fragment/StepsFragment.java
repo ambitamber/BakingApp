@@ -25,11 +25,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class StepsFragment extends Fragment implements StepAdapter.StepAdapterOnClickHandler{
+
     public static Recipe recipe;
-    @BindView(R.id.fragment_step_rv)
-    RecyclerView recyclerView;
     private List<Steps> stepsList;
     private StepAdapter stepAdapter;
+
+    @BindView(R.id.fragment_step_rv)
+    RecyclerView recyclerView;
 
     public StepsFragment(){
 
@@ -61,6 +63,5 @@ public class StepsFragment extends Fragment implements StepAdapter.StepAdapterOn
         VideoActivity.steps = stepsList.get(index);
         Intent intent = new Intent(getActivity(),VideoActivity.class);
         startActivity(intent);
-
     }
 }

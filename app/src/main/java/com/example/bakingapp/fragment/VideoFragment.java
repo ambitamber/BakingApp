@@ -29,6 +29,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class VideoFragment extends Fragment {
+
     public static Steps steps;
     private String shortDescription;
     private String videoURL;
@@ -51,6 +52,7 @@ public class VideoFragment extends Fragment {
     public VideoFragment(){
 
     }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

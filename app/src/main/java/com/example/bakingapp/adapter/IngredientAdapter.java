@@ -75,5 +75,4 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
             onClickHandler.onClick(adapterposition);
         }
     }
-
 }

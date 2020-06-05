@@ -27,11 +27,10 @@ public class Main_Detail extends AppCompatActivity  {
     ViewPager viewPager;
     @BindView(R.id.tabs)
     TabLayout tabLayout;
+
     TabAdapter tabAdapter;
     public static Recipe recipe;
-
     public static final String ARG_RECIPE = "recipe_key";
-
     public static boolean isTwoPane;
     private FragmentManager fragmentManager;
 
@@ -42,8 +41,6 @@ public class Main_Detail extends AppCompatActivity  {
 
         setTitle(recipe.getName());
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-
-
 
         if (findViewById(R.id.detailContainer) != null){
             isTwoPane = true;
@@ -71,12 +68,8 @@ public class Main_Detail extends AppCompatActivity  {
     }
 
     private void updateBakingWidget(Recipe recipe, Context context) {
-
         AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
-
         int[] appWidgetIds = widgetManager.getAppWidgetIds(new ComponentName(this, Widget.class));
-
         Widget.updateBakingWidgets(context, widgetManager, appWidgetIds, recipe);
-
     }
 }

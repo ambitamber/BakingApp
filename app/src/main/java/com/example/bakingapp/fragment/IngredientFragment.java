@@ -27,10 +27,11 @@ import butterknife.ButterKnife;
 public class IngredientFragment extends Fragment implements IngredientAdapter.IngredientAdapterOnClickHandler {
 
     public static Recipe recipe;
-    @BindView(R.id.fragment_ingredient_rv)
-    RecyclerView recyclerView;
     IngredientAdapter ingredientAdapter;
     private List<Ingredients> ingredientsList;
+
+    @BindView(R.id.fragment_ingredient_rv)
+    RecyclerView recyclerView;
 
     public IngredientFragment() {
 
@@ -58,8 +59,6 @@ public class IngredientFragment extends Fragment implements IngredientAdapter.In
 
     @Override
     public void onClick(int index) {
-        Ingredients ingredients = new Ingredients();
-        String quantity = ingredients.getQuantity();
-        Toast.makeText(getContext(),"For "+ quantity +"People",Toast.LENGTH_SHORT).show();
+
     }
 }
