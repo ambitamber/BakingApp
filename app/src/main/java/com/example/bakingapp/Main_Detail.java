@@ -10,8 +10,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.bakingapp.adapter.TabAdapter;
-import com.example.bakingapp.fragment.DetailFragment;
-import com.example.bakingapp.fragment.VideoFragment;
+import com.example.bakingapp.fragment.TabletDetailFragment;
+import com.example.bakingapp.fragment.TabletVideoFragment;
 import com.example.bakingapp.model.Recipe;
 import com.example.bakingapp.widget.Widget;
 import com.google.android.material.tabs.TabLayout;
@@ -52,10 +52,10 @@ public class Main_Detail extends AppCompatActivity  {
             if (savedInstanceState == null){
                 fragmentManager = getSupportFragmentManager();
                 fragmentManager.beginTransaction()
-                        .add(R.id.container, new DetailFragment())
+                        .add(R.id.container, new TabletDetailFragment())
                         .commit();
                 fragmentManager.beginTransaction()
-                        .add(R.id.detailContainer,new VideoFragment())
+                        .add(R.id.detailContainer,new TabletVideoFragment())
                         .commit();
             }
         }else{

@@ -3,6 +3,7 @@ package com.example.bakingapp;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,8 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
+import java.util.List;
+import java.util.Objects;
 import java.util.prefs.AbstractPreferences;
 
 import butterknife.BindView;
@@ -27,6 +30,7 @@ import butterknife.ButterKnife;
 public class VideoActivity extends AppCompatActivity {
 
     public static Steps steps;
+    private List<Steps> step_list;
     private String shortDescription;
     private String videoURL;
     private String mDescription;
@@ -41,6 +45,7 @@ public class VideoActivity extends AppCompatActivity {
     private boolean playWhenReady = true;
     private int currentWindow = 0;
     private long playbackPosition = 0;
+    private int current_position = 0;
 
     @BindView(R.id.exo_Player)
     PlayerView playerView;
@@ -50,15 +55,18 @@ public class VideoActivity extends AppCompatActivity {
     TextView short_descriptionview;
     @BindView(R.id.no_video)
     TextView no_video;
+    @BindView(R.id.BT_next)
+    Button nextButtom;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.video_player);
+        ButterKnife.bind(this);
 
         if (savedInstanceState != null){
             playWhenReady = savedInstanceState.getBoolean(PLAY_WHEN_READY);
-            currentWindow = savedInstanceState.getInt(CURRENTPOSITION);
+            current_position = savedInstanceState.getInt(CURRENTPOSITION);
             playbackPosition = savedInstanceState.getLong(PLAYERPOSITION);
         }
 
@@ -66,10 +74,11 @@ public class VideoActivity extends AppCompatActivity {
         mDescription = steps.getDescription();
         shortDescription = steps.getShortDescription();
 
-        ButterKnife.bind(this);
+
+
         descriptionView.setText(mDescription);
         short_descriptionview.setText(shortDescription);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -119,7 +128,7 @@ public class VideoActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
 
         outState.putLong(PLAYERPOSITION, playbackPosition);
-        outState.putInt(CURRENTPOSITION,currentWindow);
+        outState.putInt(CURRENTPOSITION,current_position);
         outState.putBoolean(PLAY_WHEN_READY,playWhenReady);
     }
 

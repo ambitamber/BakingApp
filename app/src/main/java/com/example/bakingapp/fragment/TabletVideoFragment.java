@@ -29,7 +29,7 @@ import static com.example.bakingapp.VideoActivity.CURRENTPOSITION;
 import static com.example.bakingapp.VideoActivity.PLAYERPOSITION;
 import static com.example.bakingapp.VideoActivity.PLAY_WHEN_READY;
 
-public class VideoFragment extends Fragment {
+public class TabletVideoFragment extends Fragment {
 
     public static Steps steps;
     private String shortDescription;
@@ -51,7 +51,7 @@ public class VideoFragment extends Fragment {
     @BindView(R.id.no_video)
     TextView no_video;
 
-    public VideoFragment(){
+    public TabletVideoFragment(){
 
     }
 

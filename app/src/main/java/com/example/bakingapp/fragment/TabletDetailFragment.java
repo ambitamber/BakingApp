@@ -26,7 +26,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DetailFragment extends Fragment implements StepAdapter.StepAdapterOnClickHandler,IngredientAdapter.IngredientAdapterOnClickHandler{
+public class TabletDetailFragment extends Fragment implements StepAdapter.StepAdapterOnClickHandler,IngredientAdapter.IngredientAdapterOnClickHandler{
 
     StepAdapter stepAdapter;
     IngredientAdapter ingredientAdapter;
@@ -40,7 +40,7 @@ public class DetailFragment extends Fragment implements StepAdapter.StepAdapterO
     @BindView(R.id.detail_ingredient_Fragment)
     RecyclerView ingredientRecyclerView;
 
-    public DetailFragment(){
+    public TabletDetailFragment(){
     }
 
     @Override
@@ -69,8 +69,8 @@ public class DetailFragment extends Fragment implements StepAdapter.StepAdapterO
 
     @Override
     public void onClick(int index) {
-            VideoFragment.steps = stepList.get(index);
+            TabletVideoFragment.steps = stepList.get(index);
             FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.detailContainer,new VideoFragment()).commit();
+            fragmentManager.beginTransaction().replace(R.id.detailContainer,new TabletVideoFragment()).commit();
     }
 }
