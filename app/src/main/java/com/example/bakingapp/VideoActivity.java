@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,6 +19,8 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
+import java.util.prefs.AbstractPreferences;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -27,8 +30,12 @@ public class VideoActivity extends AppCompatActivity {
     private String shortDescription;
     private String videoURL;
     private String mDescription;
-    private String thumbnailURL;
     private Uri uri;
+
+    //for savedInstance
+    public static final String PLAYERPOSITION = "player_position";
+    public static final String CURRENTPOSITION = "current_position";
+    public static final String PLAY_WHEN_READY="PLAY_WHEN_READY";
 
     private SimpleExoPlayer player;
     private boolean playWhenReady = true;
@@ -41,16 +48,23 @@ public class VideoActivity extends AppCompatActivity {
     TextView descriptionView;
     @BindView(R.id.step_short_description)
     TextView short_descriptionview;
+    @BindView(R.id.no_video)
+    TextView no_video;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.video_player);
 
+        if (savedInstanceState != null){
+            playWhenReady = savedInstanceState.getBoolean(PLAY_WHEN_READY);
+            currentWindow = savedInstanceState.getInt(CURRENTPOSITION);
+            playbackPosition = savedInstanceState.getLong(PLAYERPOSITION);
+        }
+
         videoURL = steps.getVideoURL();
         mDescription = steps.getDescription();
         shortDescription = steps.getShortDescription();
-        thumbnailURL = steps.getThumbnailURL();
 
         ButterKnife.bind(this);
         descriptionView.setText(mDescription);
@@ -100,14 +114,24 @@ public class VideoActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putLong(PLAYERPOSITION, playbackPosition);
+        outState.putInt(CURRENTPOSITION,currentWindow);
+        outState.putBoolean(PLAY_WHEN_READY,playWhenReady);
+    }
+
     private void initializePlayer() {
         player = ExoPlayerFactory.newSimpleInstance(this);
         playerView.setPlayer(player);
-        if (videoURL != null) {
+        if (videoURL.equals("")) {
+            playerView.setVisibility(View.INVISIBLE);
+            no_video.setVisibility(View.VISIBLE);
+        }  else {
             uri = Uri.parse(videoURL);
             playerView.setVisibility(View.VISIBLE);
-        }  else if (videoURL.equals("") &&thumbnailURL.equals("")){
-            playerView.setVisibility(View.INVISIBLE);
         }
         MediaSource mediaSource = buildMediaSource(uri);
         player.setPlayWhenReady(playWhenReady);

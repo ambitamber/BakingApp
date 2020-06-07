@@ -1,64 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="11dp"
     android:layout_marginLeft="3dp"
     android:layout_marginRight="3dp"
-
     app:cardCornerRadius="20dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/main_touch_selector"
-        android:orientation="horizontal"
-        android:padding="10dp">
+        android:background="@drawable/main_touch_selector">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            app:cardCornerRadius="40dp">
+
 
             <ImageView
                 android:id="@+id/IV_pic"
-                android:layout_width="190dp"
-                android:layout_height="140dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
+                android:tint="#8F000000"
                 android:src="@drawable/yellowcake" />
 
-        </androidx.cardview.widget.CardView>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
             android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/TV_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
                 android:text="Title"
-                android:textColor="@android:color/black"
-                android:textSize="30sp" />
+                android:textColor="@android:color/white"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
                     android:text="Servings:"
+                    android:textColor="@android:color/white"
                     android:textSize="20sp" />
 
                 <TextView
@@ -73,13 +75,18 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+                app:layout_constraintEnd_toEndOf="parent">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
                     android:text="Steps:"
+                    android:textColor="@android:color/white"
                     android:textSize="20sp" />
 
                 <TextView
@@ -90,7 +97,7 @@
                     android:textColor="@android:color/holo_red_light"
                     android:textSize="20sp" />
             </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>
 

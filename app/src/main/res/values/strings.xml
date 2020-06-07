@@ -5,4 +5,5 @@
     <string name="ingredients">ingredients</string>
 
     <string name="title">title</string>
+    <string name="no_video">No Video Available For this Step</string>
 </resources>

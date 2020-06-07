@@ -22,11 +22,12 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.example.bakingapp.VideoActivity.CURRENTPOSITION;
+import static com.example.bakingapp.VideoActivity.PLAYERPOSITION;
+import static com.example.bakingapp.VideoActivity.PLAY_WHEN_READY;
 
 public class VideoFragment extends Fragment {
 
@@ -34,7 +35,6 @@ public class VideoFragment extends Fragment {
     private String shortDescription;
     private String videoURL;
     private String mDescription;
-    private String thumbnailURL;
     private Uri uri;
 
     private SimpleExoPlayer player;
@@ -48,6 +48,8 @@ public class VideoFragment extends Fragment {
     TextView descriptionView;
     @BindView(R.id.step_short_description)
     TextView shortDescriptionView;
+    @BindView(R.id.no_video)
+    TextView no_video;
 
     public VideoFragment(){
 
@@ -64,9 +66,14 @@ public class VideoFragment extends Fragment {
             videoURL = steps.getVideoURL();
             mDescription = steps.getDescription();
             shortDescription = steps.getShortDescription();
-            thumbnailURL = steps.getThumbnailURL();
         }else {
             videoURL = "";
+        }
+
+        if (savedInstanceState != null){
+            playWhenReady = savedInstanceState.getBoolean(PLAY_WHEN_READY);
+            currentWindow = savedInstanceState.getInt(CURRENTPOSITION);
+            playbackPosition = savedInstanceState.getLong(PLAYERPOSITION);
         }
         descriptionView.setText(mDescription);
         shortDescriptionView.setText(shortDescription);
@@ -116,14 +123,16 @@ public class VideoFragment extends Fragment {
         }
     }
 
+
     private void initializePlayer() {
         player = ExoPlayerFactory.newSimpleInstance(getContext());
         playerView.setPlayer(player);
-        if (videoURL != null) {
+        if (videoURL.equals("")) {
+            playerView.setVisibility(View.INVISIBLE);
+            no_video.setVisibility(View.VISIBLE);
+        }  else {
             uri = Uri.parse(videoURL);
             playerView.setVisibility(View.VISIBLE);
-        }  else if (videoURL.equals("") &&thumbnailURL.equals("")){
-            playerView.setVisibility(View.INVISIBLE);
         }
         MediaSource mediaSource = buildMediaSource(uri);
         player.setPlayWhenReady(playWhenReady);
@@ -135,5 +144,13 @@ public class VideoFragment extends Fragment {
         DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(getContext(), "BakingApp");
         return new ProgressiveMediaSource.Factory(dataSourceFactory)
                 .createMediaSource(uri);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putLong(PLAYERPOSITION, playbackPosition);
+        outState.putInt(CURRENTPOSITION,currentWindow);
+        outState.putBoolean(PLAY_WHEN_READY,playWhenReady);
     }
 }
