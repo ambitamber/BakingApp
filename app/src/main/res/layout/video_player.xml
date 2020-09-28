@@ -1,69 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <TextView
         android:id="@+id/no_video"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="30dp"
         android:text="@string/no_video"
         android:textSize="25sp"
-        android:layout_marginBottom="30dp"
-        android:layout_centerInParent="true"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <com.google.android.exoplayer2.ui.PlayerView
-        android:id="@+id/exo_Player"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="5dp"
-        android:padding="8dp"
-        android:layout_weight="2"
-        android:visibility="invisible"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight=".3">
-        <TextView
-            android:id="@+id/step_short_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom=".1dp"
-            android:paddingRight="3dp"
-            android:paddingLeft="3dp"
-            android:background="@color/colorPrimary"
-            android:textColor="@android:color/white"
-            android:textSize="23sp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/step_detail_description"
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/exo_Player"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="2"
+            android:padding="8dp"
+            android:visibility="invisible" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:paddingRight="3dp"
-            android:paddingLeft="3dp"
-            android:textSize="18dp"
-            android:background="@color/colorPrimary"
-            android:textColor="@android:color/white" />
-        <Button
-            android:id="@+id/BT_next"
-            android:text="Next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"/>
+            android:layout_weight=".3"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/step_short_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom=".1dp"
+                android:background="@color/colorPrimary"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:textColor="@android:color/white"
+                android:textSize="23sp" />
+
+            <TextView
+                android:id="@+id/step_detail_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@color/colorPrimary"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:textColor="@android:color/white"
+                android:textSize="18dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:orientation="horizontal">
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Back"/>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+                <Button
+                    android:id="@+id/BT_next"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Next" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
     </LinearLayout>
-
-
-</LinearLayout>
 </RelativeLayout>
