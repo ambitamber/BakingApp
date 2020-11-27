@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         IngredientFragment.recipe = recipeItem;
         StepsFragment.recipe = recipeItem;
         TabletDetailFragment.recipe = recipeItem;
-        Intent intent = new Intent(context, Main_Detail.class);
+        Intent intent = new Intent(con  text, Main_Detail.class);
         startActivity(intent);
     }
 

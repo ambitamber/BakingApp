@@ -22,7 +22,6 @@ import com.google.android.exoplayer2.util.Util;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.prefs.AbstractPreferences;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,7 +29,7 @@ import butterknife.ButterKnife;
 public class VideoActivity extends AppCompatActivity {
 
     public static Steps steps;
-    private List<Steps> step_list;
+    public static List<Steps> step_list;
     private String shortDescription;
     private String videoURL;
     private String mDescription;
@@ -70,11 +69,13 @@ public class VideoActivity extends AppCompatActivity {
             playbackPosition = savedInstanceState.getLong(PLAYERPOSITION);
         }
 
-        videoURL = steps.getVideoURL();
-        mDescription = steps.getDescription();
-        shortDescription = steps.getShortDescription();
-
-
+        if (steps != null) {
+            videoURL = steps.getVideoURL();
+            mDescription = steps.getDescription();
+            shortDescription = steps.getShortDescription();
+        }else {
+            videoURL = "";
+        }
 
         descriptionView.setText(mDescription);
         short_descriptionview.setText(shortDescription);
@@ -150,7 +151,6 @@ public class VideoActivity extends AppCompatActivity {
 
     private MediaSource buildMediaSource(Uri uri) {
         DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(this, "BakingApp");
-        return new ProgressiveMediaSource.Factory(dataSourceFactory)
-                .createMediaSource(uri);
+        return new ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(uri);
     }
 }

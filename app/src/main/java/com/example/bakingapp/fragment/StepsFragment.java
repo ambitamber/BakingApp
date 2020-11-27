@@ -61,6 +61,7 @@ public class StepsFragment extends Fragment implements StepAdapter.StepAdapterOn
     @Override
     public void onClick(int index) {
         VideoActivity.steps = stepsList.get(index);
+
         Intent intent = new Intent(getActivity(),VideoActivity.class);
         startActivity(intent);
     }
